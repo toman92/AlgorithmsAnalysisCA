@@ -143,18 +143,18 @@ public class AlgorithmsAnalysis extends JFrame{
             switch(e.getActionCommand()) {
                 case "Bubble":
                     populate(bubbleSort);
-                	break;
+                    break;
 
                 case "E. Bubble":
-                	populate(enBubbleSort);
+                    populate(enBubbleSort);
                     break;
 
                 case "Selection":
-                	populate(selectionSort);
+                    populate(selectionSort);
                     break;
 
                 case "Insertion":
-                	populate(insertionSort);
+                    populate(insertionSort);
                     break;
             }
         }
@@ -167,7 +167,7 @@ public class AlgorithmsAnalysis extends JFrame{
          */
         private long sortTime(Sort algorithm, int[] elements) {
             // restes and starts stopwatch
-        	watch.reset();
+            watch.reset();
             watch.start();
 
             // the algorithm used to sort depends on what algorithm is an instance of
@@ -191,42 +191,42 @@ public class AlgorithmsAnalysis extends JFrame{
          * @param algorithm - The sorting algorithm to be used
          */
         private void populate(Sort algorithm) {
-        	// Create new arrayList to hold data field
-        	ArrayList<JTextField> dataFields;
+            // Create new arrayList to hold data field
+            ArrayList<JTextField> dataFields;
         	
-        	// keep track of panel location
-        	int count = 0;
-        	// for each element panel (3 - random, sorted, inverted)
+            // keep track of panel location
+            int count = 0;
+            // for each element panel (3 - random, sorted, inverted)
             for(ElementPanel ep : elementPanels) {
             	
             	// depending on algorithm, retrieve the corresponding array list of JTextFields
             	if(algorithm instanceof BubbleSort)
-            		dataFields = ep.getBubblePanel().getDataFields();
+                    dataFields = ep.getBubblePanel().getDataFields();
             	else if(algorithm instanceof EnBubbleSort)
-            		dataFields = ep.getEnBubblePanel().getDataFields();
+                    dataFields = ep.getEnBubblePanel().getDataFields();
             	else if(algorithm instanceof SelectionSort)
-            		dataFields = ep.getSelectPanel().getDataFields();
+                    dataFields = ep.getSelectPanel().getDataFields();
             	else
-            		dataFields = ep.getInsertPanel().getDataFields();
+                    dataFields = ep.getInsertPanel().getDataFields();
             	
             	// For each of the JTextFields, set time, checks, swaps, writes.
             	for(int i = 0; i < dataFields.size(); i++) {
-            		if(i == 0 && count == 0)
-            			dataFields.get(0).setText("" + sortTime(algorithm, arrayHelp.getRandomOriginal()));
-            		else if(i == 0 && count == 1)
-            			dataFields.get(0).setText("" + sortTime(algorithm, arrayHelp.getSortedOriginal()));
-            		else if(i == 0 && count == 2)
-            			dataFields.get(0).setText("" + sortTime(algorithm, arrayHelp.getInvertedOriginal()));
+                    if(i == 0 && count == 0)
+            		dataFields.get(0).setText("" + sortTime(algorithm, arrayHelp.getRandomOriginal()));
+                    else if(i == 0 && count == 1)
+            		dataFields.get(0).setText("" + sortTime(algorithm, arrayHelp.getSortedOriginal()));
+                    else if(i == 0 && count == 2)
+            		dataFields.get(0).setText("" + sortTime(algorithm, arrayHelp.getInvertedOriginal()));
             		
-            		if(i == 1)
-            			dataFields.get(i).setText("" + algorithm.getSwaps());
-            		else if(i == 2)
-            			dataFields.get(i).setText("" + algorithm.getChecks());
-            		else if(i == 3)
-            			dataFields.get(i).setText("" + algorithm.getWrites());
-            	}
-            	//reset algorithms counters
-            	algorithm.reset();
+                    if(i == 1)
+            		dataFields.get(i).setText("" + algorithm.getSwaps());
+                    else if(i == 2)
+            		dataFields.get(i).setText("" + algorithm.getChecks());
+                    else if(i == 3)
+            		dataFields.get(i).setText("" + algorithm.getWrites());
+                }
+                //reset algorithms counters
+               	algorithm.reset();
             	// to move to next panel eg. sorted
             	count++;
             }
